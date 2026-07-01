@@ -2,6 +2,15 @@ const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const list = document.getElementById("todo-list");
 const taskCount = document.getElementById("task-count");
+input.addEventListener("keydown", (e) => {
+
+    if(e.key === "Escape"){
+
+        input.value = "";
+
+    }
+
+});
 const filterButtons = document.querySelectorAll(".filter-btn");
 
 let currentFilter = "all";
