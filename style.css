@@ -140,3 +140,17 @@ li:hover{
     background:#2563eb;
     color:#fff;
 }
+
+li input[type="checkbox"]{
+    width:18px;
+    height:18px;
+    margin-right:10px;
+    cursor:pointer;
+    accent-color:#2563eb;
+}
+
+.task{
+    flex:1;
+    cursor:pointer;
+    word-break:break-word;
+}

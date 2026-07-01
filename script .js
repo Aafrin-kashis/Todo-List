@@ -83,7 +83,14 @@ if (currentFilter === "active") {
             li.classList.add("completed");
         }
 
-        
+        const checkbox = document.createElement("input");
+checkbox.type = "checkbox";
+checkbox.checked = todo.completed;
+
+checkbox.addEventListener("change", () => {
+    toggleComplete(todo.id);
+});
+
         const span = document.createElement("span");
         span.className = "task";
         span.textContent = todo.text;
@@ -100,8 +107,9 @@ if (currentFilter === "active") {
             deleteTodo(todo.id);
         });
 
-        li.appendChild(span);
-        li.appendChild(deleteBtn);
+        li.appendChild(checkbox);
+li.appendChild(span);
+li.appendChild(deleteBtn);
 
         list.appendChild(li);
 
