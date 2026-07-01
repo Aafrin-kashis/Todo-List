@@ -2,12 +2,32 @@ const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const list = document.getElementById("todo-list");
 const taskCount = document.getElementById("task-count");
+const filterButtons = document.querySelectorAll(".filter-btn");
+
+let currentFilter = "all";
 
 // Load tasks from localStorage
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 // Render on page load
 renderTodos();
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        currentFilter = button.dataset.filter;
+
+        filterButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        renderTodos();
+
+    });
+
+});
 
 form.addEventListener("submit", function (e) {
 
@@ -38,17 +58,24 @@ form.addEventListener("submit", function (e) {
 function renderTodos() {
 
     list.innerHTML = "";
+    let filteredTodos = todos;
 
-    if (todos.length === 0) {
+if (currentFilter === "active") {
+    filteredTodos = todos.filter(todo => !todo.completed);
+} else if (currentFilter === "completed") {
+    filteredTodos = todos.filter(todo => todo.completed);
+}
 
-        list.innerHTML = `<p class="empty">No tasks available.</p>`;
+    if (filteredTodos.length === 0) {
+
+        list.innerHTML = `<p class="empty">No tasks found.</p>`;
 
         taskCount.textContent = "Tasks Left: 0";
 
         return;
     }
 
-    todos.forEach(todo => {
+    filteredTodos.forEach(todo => {
 
         const li = document.createElement("li");
 
@@ -56,6 +83,7 @@ function renderTodos() {
             li.classList.add("completed");
         }
 
+        
         const span = document.createElement("span");
         span.className = "task";
         span.textContent = todo.text;

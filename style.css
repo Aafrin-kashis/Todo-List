@@ -114,3 +114,29 @@ li:hover{
     color:gray;
     margin-top:15px;
 }
+
+.filters{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.filter-btn{
+    padding:8px 15px;
+    border:none;
+    background:#ddd;
+    border-radius:6px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.filter-btn:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+.filter-btn.active{
+    background:#2563eb;
+    color:#fff;
+}
